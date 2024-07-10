@@ -45,6 +45,13 @@ public class PersonPlayer : MonoBehaviour
 
             // Aplicar la rotación al personaje
             transform.rotation = rotation;
+
+            
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = getOutCar.position;
+            gameObject.SetActive(true);
         }
         }
 
@@ -58,9 +65,13 @@ public class PersonPlayer : MonoBehaviour
                 gameObject.SetActive(false);
                 GameObject carControl = other.gameObject.GetComponent<GameObject>();
                 transform.position = carControl.transform.position;
-                CarControl sCarControl =  other.gameObject.GetComponent<CarControl>();
-
+                CarControl sCarControl = other.gameObject.GetComponent<CarControl>();
+                sCarControl.playerIn = true;
             }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        getInText.enabled = false;
     }
 }

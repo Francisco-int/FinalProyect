@@ -14,7 +14,7 @@ public class CarControl : MonoBehaviour
     Rigidbody rigidBody;
 
 
-    [SerializeField] bool playerIn;
+    public bool playerIn;
 
     // Start is called before the first frame update
     void Start()
