@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform target;  // Referencia al transform del jugador a seguir
+    public float smoothSpeed = 0.125f;  // Velocidad de suavizado del seguimiento
+    public Vector3 offset;  // Offset o desplazamiento de la cámara respecto al jugador
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (target != null)
+        {
+            Vector3 desiredPosition = target.position + offset;
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            transform.position = smoothedPosition;
+        }
     }
 }

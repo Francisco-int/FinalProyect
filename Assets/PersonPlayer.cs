@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +8,12 @@ public class PersonPlayer : MonoBehaviour
 {
         public float moveSpeed = 5f;
     public Text getInText;
-    public Transform getOutCar;
-
+    public GameObject cameraCar;
+    CarPlayer carPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        getInText.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class PersonPlayer : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         Plane plane = new Plane(Vector3.up, 0); // Plane en el eje Y
         float distance;
+
         if (plane.Raycast(ray, out distance))
         {
             Vector3 target = ray.GetPoint(distance);
@@ -48,26 +50,25 @@ public class PersonPlayer : MonoBehaviour
 
             
         }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            transform.position = getOutCar.position;
-            gameObject.SetActive(true);
-        }
-        }
+       
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Car"))
         {
+            Debug.Log("fff");
             getInText.enabled = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                gameObject.SetActive(false);
-                GameObject carControl = other.gameObject.GetComponent<GameObject>();
-                transform.position = carControl.transform.position;
+             carPlayer = other.gameObject.GetComponent<CarPlayer>();
+            cameraCar = carPlayer.cameraCar;
+            gameObject.SetActive(false);
+                //GameObject carControl = other.gameObject.GetComponent<GameObject>();
+                //transform.position = carControl.transform.position;
+                cameraCar.gameObject.SetActive(true);
                 CarControl sCarControl = other.gameObject.GetComponent<CarControl>();
                 sCarControl.playerIn = true;
-            }
+            
         }
     }
     private void OnTriggerExit(Collider other)

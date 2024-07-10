@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
+
+    [SerializeField] float timerDestroy;
+    [SerializeField] bool destroyColision;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,15 @@ public class Destroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, timerDestroy);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (destroyColision)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
