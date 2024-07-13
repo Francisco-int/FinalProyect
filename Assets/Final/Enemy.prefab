@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4059668130375512089}
   - component: {fileID: 3001277614715984433}
   - component: {fileID: 1369077404118772837}
+  - component: {fileID: 2129284655776056005}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6742aabec2df9b41b8df4b56e5384bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paralizadoTime: 5
   enemy: {fileID: 1369077404118772837}
   target: {fileID: 0}
   personPlayer: {fileID: 0}
@@ -150,6 +152,33 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &2129284655776056005
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6414773567928221248}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5002611487211598897
 PrefabInstance:
   m_ObjectHideFlags: 0

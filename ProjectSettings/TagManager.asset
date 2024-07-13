@@ -7,6 +7,8 @@ TagManager:
   - Bala
   - Car
   - CameraCar
+  - Enemy
+  - Acess
   layers:
   - Default
   - TransparentFX

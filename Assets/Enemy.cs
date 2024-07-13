@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     {
         InvokeRepeating("FollowUpdate", 1, 1);
         target = GameObject.Find("Capsule").gameObject;
+        personPlayer = GameObject.Find("Capsule").GetComponent<PersonPlayer>();
+        player = GameObject.Find("Capsule").gameObject;
+
     }
 
     // Update is called once per frame
@@ -51,4 +54,18 @@ if(Input.GetKeyDown(KeyCode.R))
         yield return new WaitForSeconds(paralizadoTime);
         enemy.speed = 3.5f;
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        enemy.speed = 0;
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        enemy.speed = 3.5f;
+    //    }
+    //}
 }

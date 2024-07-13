@@ -2,25 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PersonPlayer : MonoBehaviour
 {
-        public float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public Text getInText;
     public GameObject cameraCar;
     CarPlayer carPlayer;
-    [SerializeField] Enemy enemy;
-   public GameObject carGameOjbect;
+    [SerializeField] List<Enemy> enemy;
+    [SerializeField] int cantEnemy;
+    public GameObject carGameOjbect;
+    [SerializeField] float timeLeft;
+
     // Start is called before the first frame update
     void Start()
     {
-        getInText.enabled = false;
+        getInText.enabled = true;
+        cantEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        timeLeft -= Time.deltaTime;
+        getInText.text = "Time left: " + timeLeft.ToString("F1");
+        if(timeLeft < 0)
+        {
+            SceneManager.LoadScene(0);
+        }
         float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float moveZ = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
@@ -60,9 +72,11 @@ public class PersonPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Car"))
         {
             carGameOjbect = other.gameObject;
-            Enemy enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
-            enemy.SetTargetCar();
-            getInText.enabled = true;
+            for(int i = 0; i < enemy.Count; i++)
+            {
+                enemy[i].SetTargetCar();
+            }
+            
             carPlayer = other.gameObject.GetComponent<CarPlayer>();
             cameraCar = carPlayer.cameraCar;
             cameraCar.gameObject.SetActive(true);
@@ -74,6 +88,6 @@ public class PersonPlayer : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        getInText.enabled = false;
+
     }
 }
