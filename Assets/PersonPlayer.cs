@@ -15,13 +15,22 @@ public class PersonPlayer : MonoBehaviour
     [SerializeField] int cantEnemy;
     public GameObject carGameOjbect;
     [SerializeField] float timeLeft;
-
+    [SerializeField] GameObject[] AcessGetIt;
+    int i;
+    [SerializeField] float paralizadoTime;
+    [SerializeField] Text WinCanva;
+    [SerializeField] bool powerUp;
+    [SerializeField] float coolDownPowerUp;
+    [SerializeField] Text SlowMotion;
+    [SerializeField] Text paralizado;
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         getInText.enabled = true;
         cantEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        
+        WinCanva.enabled = false;
+        powerUp = true;
     }
 
     // Update is called once per frame
@@ -64,7 +73,35 @@ public class PersonPlayer : MonoBehaviour
 
             
         }
-       
+       if(Input.GetKeyDown(KeyCode.E) && powerUp)
+        {
+            coolDownPowerUp = 5;
+            powerUp = false;
+            Time.timeScale = 0.3f;
+            StartCoroutine(CoolDownPowerUp());
+        }
+       if(coolDownPowerUp <= 0)
+        {
+            SlowMotion.color = Color.blue;
+            SlowMotion.text = "SlowMotion: Activate with E";
+        }
+        if (coolDownPowerUp > 0)
+        {
+            coolDownPowerUp -= Time.deltaTime;
+            SlowMotion.color = Color.red;
+            SlowMotion.text = "SlowMotion: " + coolDownPowerUp.ToString("F1");
+        }
+        if (paralizadoTime > 0)
+        {
+            paralizadoTime -= Time.deltaTime;
+            paralizado.color = Color.red;
+            paralizado.text = "Paralizado: " + paralizadoTime.ToString("F2");
+        }
+        if (paralizadoTime <= 0)
+        {
+            paralizado.color = Color.green;
+            paralizado.text = "Movil";
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,10 +121,42 @@ public class PersonPlayer : MonoBehaviour
             sCarControl.playerIn = true;
             gameObject.SetActive(false);
         }
+        if (other.gameObject.CompareTag("Acess"))
+        {
+            AcessGetIt[i].SetActive(true);
+            i++;
+            other.gameObject.SetActive(false);
+            if (i == 3)
+            {
+                Time.timeScale = 0;
+                WinCanva.enabled = true;
+            }
+        }
+        
     }
-
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-
+        
+        if (collision.gameObject.CompareTag("Bala"))
+        {
+            paralizadoTime = 2;
+            moveSpeed = 0;
+            StartCoroutine(timerParalizado());
+        }
+    }
+    IEnumerator timerParalizado()
+    {
+        yield return new WaitForSeconds(paralizadoTime);
+        moveSpeed = 2;
+    }
+    IEnumerator CoolDownPowerUp()
+    {
+        yield return new WaitForSeconds(coolDownPowerUp);
+        powerUp = true;
+        Time.timeScale = 1;
+    }
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }

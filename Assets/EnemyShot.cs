@@ -17,6 +17,7 @@ public class EnemyShot : MonoBehaviour
     void Start()
     {
         ableDisparo = true;
+        player = GameObject.Find("Capsule").GetComponent<Transform>();
     }
 
     // Update is called once per frame
