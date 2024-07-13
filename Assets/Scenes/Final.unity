@@ -2452,6 +2452,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 864842512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &260218778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4449159309130162902, guid: f97b0464fa1386946b805d8f72dc6c3d, type: 3}
+  m_PrefabInstance: {fileID: 4830281722430247503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &275598278
 GameObject:
   m_ObjectHideFlags: 0
@@ -11300,7 +11305,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 481852573049822609, guid: f97b0464fa1386946b805d8f72dc6c3d, type: 3}
   m_PrefabInstance: {fileID: 4830281722430247503}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 260218778}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6607c908105f4745a4e91ea96e26409, type: 3}
@@ -19973,80 +19978,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: enemy
+      propertyPath: player
       value: 
-      objectReference: {fileID: 4027269308342692346}
-    - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: targetff
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: carPlayer
-      value: 
-      objectReference: {fileID: 3394159527983823874, guid: 1a361106384db3249a57d3f0873e01c8, type: 3}
+      objectReference: {fileID: 260218778}
     - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
       propertyPath: personPlayer
       value: 
       objectReference: {fileID: 1276197978}
     - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: target.Array.size
-      value: 2
+      propertyPath: paralizadoTime
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: target.Array.data[0]
-      value: 
-      objectReference: {fileID: 1276197975}
-    - target: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: target.Array.data[1]
-      value: 
-      objectReference: {fileID: 1276197975}
     - target: {fileID: 6414773567928221248, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 6414773567928221248, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6414773567928221248, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4027269308342692346}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
---- !u!1 &4027269308342692345 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6414773567928221248, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
-  m_PrefabInstance: {fileID: 4027269308342692344}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &4027269308342692346
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4027269308342692345}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5000001
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1001 &4830281722430247503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20066,6 +20017,10 @@ PrefabInstance:
     - target: {fileID: 481852573049822609, guid: f97b0464fa1386946b805d8f72dc6c3d, type: 3}
       propertyPath: cameraCar
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 481852573049822609, guid: f97b0464fa1386946b805d8f72dc6c3d, type: 3}
+      propertyPath: moveSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 481852573049822609, guid: f97b0464fa1386946b805d8f72dc6c3d, type: 3}
       propertyPath: carGameOjbect

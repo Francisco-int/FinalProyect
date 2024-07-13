@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] float paralizadoTime;
     public NavMeshAgent enemy;
     [SerializeField] GameObject target;
     public PersonPlayer personPlayer;
     public CarPlayer carPlayer;
     public GameObject targetff;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+if(Input.GetKeyDown(KeyCode.R))
+        {
+            target = player;
+        }        
     }
     void FollowUpdate()
     {
@@ -29,10 +34,21 @@ public class Enemy : MonoBehaviour
     {
         target = personPlayer.carGameOjbect;
     }
-    public void SetTargetPlayer()
+    public void setPlayer()
     {
-        Debug.Log("SET");
-        targetff = carPlayer.player;
-
+        target = player.gameObject;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bala"))
+        {
+            enemy.speed = 0;
+            StartCoroutine(timerParalizado());
+        }
+    }
+    IEnumerator timerParalizado()
+    {
+        yield return new WaitForSeconds(paralizadoTime);
+        enemy.speed = 3.5f;
     }
 }

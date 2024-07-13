@@ -19,34 +19,29 @@ public class CarPlayer : MonoBehaviour
     void Start()
     {
         carControl = GetComponent<CarControl>();
-       
     }
 
     // Update is called once per frame
     void Update()
     {
-     if (player != null)
-        {
-           
+        if (player != null)
+        {          
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Enemy enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
-                enemy.SetTargetPlayer();
                 carControl.playerIn = false;
                 player.transform.position = pointGetOut.transform.position;
                 player.gameObject.SetActive(true);
+                //enemy.targetff = player.gameObject;
                 cameraCar.SetActive(false);
-            
             }
-        }
-        
+        }       
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player = other.gameObject;
+            player = other.gameObject;           
         }
     }
 

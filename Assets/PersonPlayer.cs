@@ -57,23 +57,21 @@ public class PersonPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Car"))
         {
             carGameOjbect = other.gameObject;
             Enemy enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
             enemy.SetTargetCar();
             getInText.enabled = true;
-             carPlayer = other.gameObject.GetComponent<CarPlayer>();
+            carPlayer = other.gameObject.GetComponent<CarPlayer>();
             cameraCar = carPlayer.cameraCar;
-                cameraCar.gameObject.SetActive(true);
-                CarControl sCarControl = other.gameObject.GetComponent<CarControl>();
-                sCarControl.playerIn = true;
+            cameraCar.gameObject.SetActive(true);
+            CarControl sCarControl = other.gameObject.GetComponent<CarControl>();
+            sCarControl.playerIn = true;
             gameObject.SetActive(false);
-
-
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         getInText.enabled = false;
