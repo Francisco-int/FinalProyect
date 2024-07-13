@@ -543,6 +543,9 @@ MonoBehaviour:
   powerUpTimer: 5
   cameraCar: {fileID: 9086206274338989589}
   pointGetOut: {fileID: 9082820396405492734}
+  player: {fileID: 0}
+  carControl: {fileID: 0}
+  enemy: {fileID: 3001277614715984433, guid: 9616434f883ee654e84cba2c51e992d4, type: 3}
 --- !u!65 &7574400081581221370
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class PersonPlayer : MonoBehaviour
     public Text getInText;
     public GameObject cameraCar;
     CarPlayer carPlayer;
+    [SerializeField] Enemy enemy;
+   public GameObject carGameOjbect;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,17 +60,18 @@ public class PersonPlayer : MonoBehaviour
 
         if (other.gameObject.CompareTag("Car"))
         {
-            Debug.Log("fff");
+            carGameOjbect = other.gameObject;
+            Enemy enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+            enemy.SetTargetCar();
             getInText.enabled = true;
              carPlayer = other.gameObject.GetComponent<CarPlayer>();
             cameraCar = carPlayer.cameraCar;
-            gameObject.SetActive(false);
-                //GameObject carControl = other.gameObject.GetComponent<GameObject>();
-                //transform.position = carControl.transform.position;
                 cameraCar.gameObject.SetActive(true);
                 CarControl sCarControl = other.gameObject.GetComponent<CarControl>();
                 sCarControl.playerIn = true;
-            
+            gameObject.SetActive(false);
+
+
         }
     }
     private void OnTriggerExit(Collider other)
