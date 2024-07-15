@@ -23,9 +23,13 @@ public class PersonPlayer : MonoBehaviour
     [SerializeField] float coolDownPowerUp;
     [SerializeField] Text SlowMotion;
     [SerializeField] Text paralizado;
+    [SerializeField] Text GameOver;
+    [SerializeField] GameObject restarButton;
     // Start is called before the first frame update
     void Start()
     {
+        restarButton.SetActive(false);
+        GameOver.enabled = false;
         Time.timeScale = 1;
         getInText.enabled = true;
         cantEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
@@ -40,7 +44,9 @@ public class PersonPlayer : MonoBehaviour
         getInText.text = "Time left: " + timeLeft.ToString("F1");
         if(timeLeft < 0)
         {
-            SceneManager.LoadScene(0);
+            restarButton.SetActive(true);
+            GameOver.enabled = true;
+            Time.timeScale = 0;
         }
         float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float moveZ = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
@@ -91,9 +97,9 @@ public class PersonPlayer : MonoBehaviour
             SlowMotion.color = Color.red;
             SlowMotion.text = "SlowMotion: " + coolDownPowerUp.ToString("F1");
         }
+        paralizadoTime -= Time.deltaTime;
         if (paralizadoTime > 0)
         {
-            paralizadoTime -= Time.deltaTime;
             paralizado.color = Color.red;
             paralizado.text = "Paralizado: " + paralizadoTime.ToString("F2");
         }
@@ -101,6 +107,7 @@ public class PersonPlayer : MonoBehaviour
         {
             paralizado.color = Color.green;
             paralizado.text = "Movil";
+            moveSpeed = 2;
         }
     }
 
@@ -128,26 +135,24 @@ public class PersonPlayer : MonoBehaviour
             other.gameObject.SetActive(false);
             if (i == 3)
             {
-                Time.timeScale = 0;
+                restarButton.SetActive(true);
                 WinCanva.enabled = true;
+                Time.timeScale = 0;
             }
         }
-        
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision.gameObject.CompareTag("Bala"))
+        if (other.gameObject.CompareTag("Bala"))
         {
             paralizadoTime = 2;
             moveSpeed = 0;
-            StartCoroutine(timerParalizado());
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {     
+        
     }
     IEnumerator timerParalizado()
     {
         yield return new WaitForSeconds(paralizadoTime);
-        moveSpeed = 2;
     }
     IEnumerator CoolDownPowerUp()
     {

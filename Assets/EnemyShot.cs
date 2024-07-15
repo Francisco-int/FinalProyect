@@ -7,7 +7,7 @@ public class EnemyShot : MonoBehaviour
     public float intervalShot;
     [SerializeField] GameObject proyectil;
     [SerializeField] Transform pointShot;
-    [SerializeField] bool ableDisparo;
+    public bool ableDisparo;
     public float forceShot;
     RaycastHit hit;
     [SerializeField] float range;

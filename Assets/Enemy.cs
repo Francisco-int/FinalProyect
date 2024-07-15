@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,16 +19,15 @@ public class Enemy : MonoBehaviour
         target = GameObject.Find("Capsule").gameObject;
         personPlayer = GameObject.Find("Capsule").GetComponent<PersonPlayer>();
         player = GameObject.Find("Capsule").gameObject;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             target = player;
-        }        
+        }
     }
     void FollowUpdate()
     {
@@ -43,29 +43,32 @@ if(Input.GetKeyDown(KeyCode.R))
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bala"))
-        {
-            enemy.speed = 0;
-            StartCoroutine(timerParalizado());
-        }
+
     }
     IEnumerator timerParalizado()
     {
         yield return new WaitForSeconds(paralizadoTime);
         enemy.speed = 3.5f;
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        enemy.speed = 0;
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        enemy.speed = 3.5f;
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bala"))
+        {
+            enemy.speed = 0;
+            StartCoroutine(timerParalizado());
+        }
+
+        //    if (other.gameObject.CompareTag("Player"))
+        //    {
+        //        enemy.speed = 0;
+        //    }
+        //}
+        //private void OnTriggerExit(Collider other)
+        //{
+        //    if (other.gameObject.CompareTag("Player"))
+        //    {
+        //        enemy.speed = 3.5f;
+        //    }
+        //}
+    }
 }

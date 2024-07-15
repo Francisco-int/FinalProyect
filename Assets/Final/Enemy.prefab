@@ -162,6 +162,7 @@ MonoBehaviour:
   carPlayer: {fileID: 3394159527983823874, guid: 1a361106384db3249a57d3f0873e01c8, type: 3}
   targetff: {fileID: 0}
   player: {fileID: 0}
+  enemyShot: {fileID: 8732645159060251244}
 --- !u!195 &1369077404118772837
 NavMeshAgent:
   m_ObjectHideFlags: 0
