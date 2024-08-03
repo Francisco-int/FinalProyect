@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemyShot enemyShot;
     [SerializeField] float cerca;
     [SerializeField] float distancia;
+    [SerializeField] GameObject electricity;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
         personPlayer = GameObject.Find("Capsule").GetComponent<PersonPlayer>();
         player = GameObject.Find("Capsule").gameObject;
         paralizado = false;
-        
+        electricity.SetActive(false);
     }
 
     // Update is called once per frame
@@ -73,8 +74,10 @@ public class Enemy : MonoBehaviour
     IEnumerator timerParalizado()
     {
         yield return new WaitForSeconds(paralizadoTime);
+        target = player.gameObject;
         enemyShot.disparoParalizado = true;
         paralizado = false;
+        electricity.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -82,6 +85,7 @@ public class Enemy : MonoBehaviour
         {
             paralizado = true;
             target = null;
+            electricity.SetActive(true);
             animator.SetInteger("WalkLeft", 0);
             animator.SetInteger("WalkBack", 0);
             animator.SetInteger("WalkFront", 0);

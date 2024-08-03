@@ -7,11 +7,12 @@ public class Destroy : MonoBehaviour
 
     [SerializeField] float timerDestroy;
     [SerializeField] bool destroyColision;
+    [SerializeField] GameObject particulas;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

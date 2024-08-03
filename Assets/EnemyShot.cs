@@ -13,6 +13,7 @@ public class EnemyShot : MonoBehaviour
     [SerializeField] float range;
     public Transform player;
     public bool disparoParalizado;
+    [SerializeField] GameObject particulas;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class EnemyShot : MonoBehaviour
         {
             if (ableDisparo == true && hit.collider.gameObject.CompareTag("Player"))
             {
+                Instantiate(particulas, transform.position, transform.rotation);
                 ableDisparo = false;
                 StartCoroutine(Disparo());
                 Debug.Log("Disparo Metodo llamado");

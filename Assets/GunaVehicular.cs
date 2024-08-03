@@ -10,7 +10,7 @@ public class GunaVehicular : MonoBehaviour
     [SerializeField] Transform pointShot;
     [SerializeField] bool ableDisparo;
     public float forceShot;
-
+    [SerializeField] GameObject particulas;
 
 
     // Start is called before the first frame update
@@ -25,6 +25,7 @@ public class GunaVehicular : MonoBehaviour
        
 if (Input.GetMouseButton(0) && ableDisparo == true)
         {
+            Instantiate(particulas, transform.position, transform.rotation);
             ableDisparo = false;
             StartCoroutine(Disparo());
             Debug.Log("Disparo Metodo llamado");

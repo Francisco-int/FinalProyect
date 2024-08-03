@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerDestroy: 2
   destroyColision: 1
+  particulas: {fileID: 100008, guid: 4248ba95366d5904686c308a47794818, type: 3}
