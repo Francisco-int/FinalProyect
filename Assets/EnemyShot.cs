@@ -12,10 +12,11 @@ public class EnemyShot : MonoBehaviour
     RaycastHit hit;
     [SerializeField] float range;
     public Transform player;
-
+    public bool disparoParalizado;
     // Start is called before the first frame update
     void Start()
     {
+        disparoParalizado = true;
         ableDisparo = true;
         player = GameObject.Find("Capsule").GetComponent<Transform>();
     }
@@ -40,12 +41,16 @@ public class EnemyShot : MonoBehaviour
     }
     IEnumerator Disparo()
     {
+        if (disparoParalizado)
+        {
         Debug.Log("Disparo");
         GameObject newBala = Instantiate(proyectil, pointShot.transform.position, Quaternion.identity);
         Rigidbody rb = newBala.GetComponent<Rigidbody>();
         rb.AddForce(pointShot.forward * forceShot, ForceMode.Impulse);
         yield return new WaitForSeconds(intervalShot);
         ableDisparo = true;
+        }
+        
     }
   }
 

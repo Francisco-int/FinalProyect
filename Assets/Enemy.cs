@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 public class Enemy : MonoBehaviour
@@ -12,6 +13,11 @@ public class Enemy : MonoBehaviour
     public CarPlayer carPlayer;
     public GameObject targetff;
     public GameObject player;
+    [SerializeField] Animator animator;
+    [SerializeField] bool paralizado;
+    [SerializeField] EnemyShot enemyShot;
+    [SerializeField] float cerca;
+    [SerializeField] float distancia;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +25,8 @@ public class Enemy : MonoBehaviour
         target = GameObject.Find("Capsule").gameObject;
         personPlayer = GameObject.Find("Capsule").GetComponent<PersonPlayer>();
         player = GameObject.Find("Capsule").gameObject;
+        paralizado = false;
+        
     }
 
     // Update is called once per frame
@@ -28,13 +36,30 @@ public class Enemy : MonoBehaviour
         {
             target = player;
         }
+        distancia = Vector3.Distance(player.transform.position, transform.position);
+        if(distancia <= cerca)
+        {
+            animator.SetInteger("WalkLeft", 0);
+            animator.SetInteger("WalkBack", 0);
+            animator.SetInteger("WalkFront", 0);
+            animator.SetInteger("WalkRight", 0);
+        }
     }
     void FollowUpdate()
     {
-        enemy.SetDestination(target.transform.position);
+        if (paralizado == false)
+        {
+            animator.SetInteger("WalkLeft", 0);
+            animator.SetInteger("WalkBack", 0);
+            animator.SetInteger("WalkRight", 0);
+            animator.SetInteger("WalkFront", 1);
+            enemy.SetDestination(target.transform.position);
+
+        }
     }
     public void SetTargetCar()
     {
+        
         target = personPlayer.carGameOjbect;
     }
     public void setPlayer()
@@ -48,13 +73,20 @@ public class Enemy : MonoBehaviour
     IEnumerator timerParalizado()
     {
         yield return new WaitForSeconds(paralizadoTime);
-        enemy.speed = 3.5f;
+        enemyShot.disparoParalizado = true;
+        paralizado = false;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Bala"))
         {
-            enemy.speed = 0;
+            paralizado = true;
+            target = null;
+            animator.SetInteger("WalkLeft", 0);
+            animator.SetInteger("WalkBack", 0);
+            animator.SetInteger("WalkFront", 0);
+            animator.SetInteger("WalkRight", 0);
+            enemyShot.disparoParalizado = false;
             StartCoroutine(timerParalizado());
         }
 
