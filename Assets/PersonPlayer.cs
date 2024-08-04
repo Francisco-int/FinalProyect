@@ -15,7 +15,7 @@ public class PersonPlayer : MonoBehaviour
     [SerializeField] int cantEnemy;
     public GameObject carGameOjbect;
     [SerializeField] float timeLeft;
-    [SerializeField] GameObject[] AcessGetIt;
+    [SerializeField] GameObject[] changersUI;
     int i;
     [SerializeField] float paralizadoTime;
     [SerializeField] bool powerUp;
@@ -23,9 +23,12 @@ public class PersonPlayer : MonoBehaviour
     [SerializeField] Text SlowMotion;
     [SerializeField] Text paralizado;
     [SerializeField] GameObject electricity;
+    [SerializeField] Slider powerUpUI;
+    [SerializeField] int chargerLefts;
     // Start is called before the first frame update
     void Start()
     {
+        chargerLefts = 3;
         electricity.SetActive(false);
         Time.timeScale = 1;
         getInText.enabled = true;
@@ -74,15 +77,17 @@ public class PersonPlayer : MonoBehaviour
             
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && powerUp)
+        if(Input.GetKeyDown(KeyCode.E) && powerUp && chargerLefts > 0)
 
         {
             coolDownPowerUp = 5;
+            powerUpUI.maxValue = coolDownPowerUp;
             powerUp = false;
             Time.timeScale = 0.3f;
             StartCoroutine(CoolDownPowerUp());
         }
-       if(coolDownPowerUp <= 0)
+
+        if(coolDownPowerUp <= 0)
         {
             SlowMotion.color = Color.blue;
             SlowMotion.text = "SlowMotion: Activate with E";
@@ -90,8 +95,9 @@ public class PersonPlayer : MonoBehaviour
         if (coolDownPowerUp > 0)
         {
             coolDownPowerUp -= Time.deltaTime;
+            powerUpUI.value = coolDownPowerUp;
             SlowMotion.color = Color.red;
-            SlowMotion.text = "SlowMotion: " + coolDownPowerUp.ToString("F1");
+            SlowMotion.text = "SlowMotion: ";
         }
         paralizadoTime -= Time.deltaTime;
         if (paralizadoTime > 0)
@@ -127,7 +133,6 @@ public class PersonPlayer : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Acess"))
         {
-            AcessGetIt[i].SetActive(true);
             i++;
             other.gameObject.SetActive(false);
             if (i == 3)
