@@ -14,6 +14,8 @@ public class EnemyShot : MonoBehaviour
     public Transform player;
     public bool disparoParalizado;
     [SerializeField] GameObject particulas;
+    [SerializeField] AudioSource audioDisparo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class EnemyShot : MonoBehaviour
         {
             if (ableDisparo == true && hit.collider.gameObject.CompareTag("Player"))
             {
+                audioDisparo.Play();
                 Instantiate(particulas, transform.position, transform.rotation);
                 ableDisparo = false;
                 StartCoroutine(Disparo());

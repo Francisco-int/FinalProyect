@@ -11,7 +11,7 @@ public class GunaVehicular : MonoBehaviour
     [SerializeField] bool ableDisparo;
     public float forceShot;
     [SerializeField] GameObject particulas;
-
+    [SerializeField] AudioSource audioDisparo;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class GunaVehicular : MonoBehaviour
        
 if (Input.GetMouseButton(0) && ableDisparo == true)
         {
+            audioDisparo.Play();
             Instantiate(particulas, transform.position, transform.rotation);
             ableDisparo = false;
             StartCoroutine(Disparo());

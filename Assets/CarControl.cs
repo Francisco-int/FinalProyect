@@ -16,11 +16,14 @@ public class CarControl : MonoBehaviour
 
     public bool playerIn;
 
+    [SerializeField] AudioSource Idle;
+    [SerializeField] AudioSource Go;
     // Start is called before the first frame update
     void Start()
     {
-        
-  rigidBody = GetComponent<Rigidbody>();
+        Idle.Play();
+
+        rigidBody = GetComponent<Rigidbody>();
 
         // Adjust center of mass vertically, to help prevent the car from rolling
         rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
@@ -34,10 +37,24 @@ public class CarControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float vInput = Input.GetAxis("Vertical");
+        float hInput = Input.GetAxis("Horizontal");
+        if(vInput == 0 && hInput == 0)
+        {
+            Idle.Play();
+            Go.Stop();
+        }
+        else
+        {
+            Idle.Stop();
+            Go.Play();
+        }
+
         if (playerIn)
         {
-            float vInput = Input.GetAxis("Vertical");
-            float hInput = Input.GetAxis("Horizontal");
+             vInput = Input.GetAxis("Vertical");
+             hInput = Input.GetAxis("Horizontal");
+            
 
 
 

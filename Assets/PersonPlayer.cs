@@ -132,7 +132,7 @@ public class PersonPlayer : MonoBehaviour
             other.gameObject.SetActive(false);
             if (i == 3)
             {
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(2);
                 Time.timeScale = 0;
             }
         }

@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class CarPlayer : MonoBehaviour
 {
-
-    [SerializeField] int vida;
     [SerializeField] float powerUpTimer;
     public GameObject cameraCar;
     public GameObject pointGetOut;
     public GameObject player;
     public CarControl carControl;
     [SerializeField] Enemy enemy;
-
+   
     // Start is called before the first frame update
     void Start()
     {
