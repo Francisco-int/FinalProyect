@@ -18,22 +18,18 @@ public class PersonPlayer : MonoBehaviour
     [SerializeField] GameObject[] AcessGetIt;
     int i;
     [SerializeField] float paralizadoTime;
-    [SerializeField] Text WinCanva;
     [SerializeField] bool powerUp;
     [SerializeField] float coolDownPowerUp;
     [SerializeField] Text SlowMotion;
     [SerializeField] Text paralizado;
-    [SerializeField] Text GameOver;
-    [SerializeField] GameObject restarButton;
+    [SerializeField] GameObject electricity;
     // Start is called before the first frame update
     void Start()
     {
-        restarButton.SetActive(false);
-        GameOver.enabled = false;
+        electricity.SetActive(false);
         Time.timeScale = 1;
         getInText.enabled = true;
         cantEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        WinCanva.enabled = false;
         powerUp = true;
     }
 
@@ -44,8 +40,7 @@ public class PersonPlayer : MonoBehaviour
         getInText.text = "Time left: " + timeLeft.ToString("F1");
         if(timeLeft < 0)
         {
-            restarButton.SetActive(true);
-            GameOver.enabled = true;
+            SceneManager.LoadScene(3);
             Time.timeScale = 0;
         }
         float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
@@ -76,10 +71,11 @@ public class PersonPlayer : MonoBehaviour
 
             // Aplicar la rotación al personaje
             transform.rotation = rotation;
-
             
         }
-       if(Input.GetKeyDown(KeyCode.E) && powerUp)
+
+        if(Input.GetKeyDown(KeyCode.E) && powerUp)
+
         {
             coolDownPowerUp = 5;
             powerUp = false;
@@ -105,6 +101,7 @@ public class PersonPlayer : MonoBehaviour
         }
         if (paralizadoTime <= 0)
         {
+            electricity.SetActive(false);
             paralizado.color = Color.green;
             paralizado.text = "Movil";
             moveSpeed = 2;
@@ -135,13 +132,13 @@ public class PersonPlayer : MonoBehaviour
             other.gameObject.SetActive(false);
             if (i == 3)
             {
-                restarButton.SetActive(true);
-                WinCanva.enabled = true;
+                SceneManager.LoadScene(3);
                 Time.timeScale = 0;
             }
         }
         if (other.gameObject.CompareTag("Bala"))
         {
+            electricity.SetActive(true);
             paralizadoTime = 2;
             moveSpeed = 0;
         }
