@@ -32,7 +32,8 @@ public class EnemyShot : MonoBehaviour
 
         if (Physics.Raycast(transform.position, directionToPlayer, out hit, range))
         {
-            if (ableDisparo == true && hit.collider.gameObject.CompareTag("Player"))
+            Debug.Log(hit.ToString());
+            if (ableDisparo == true && hit.collider.gameObject.CompareTag("Player") && disparoParalizado == true)
             {
                 audioDisparo.Play();
                 Instantiate(particulas, transform.position, transform.rotation);
@@ -46,15 +47,14 @@ public class EnemyShot : MonoBehaviour
     }
     IEnumerator Disparo()
     {
-        if (disparoParalizado)
-        {
+      
         Debug.Log("Disparo");
         GameObject newBala = Instantiate(proyectil, pointShot.transform.position, Quaternion.identity);
         Rigidbody rb = newBala.GetComponent<Rigidbody>();
         rb.AddForce(pointShot.forward * forceShot, ForceMode.Impulse);
         yield return new WaitForSeconds(intervalShot);
         ableDisparo = true;
-        }
+        
         
     }
   }
