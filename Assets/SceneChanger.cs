@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger: MonoBehaviour
 {
+    [SerializeField] AudioSource pressSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +20,22 @@ public class SceneChanger: MonoBehaviour
 
     public void SceneZero()
     {
+        pressSound.Play();
         SceneManager.LoadScene(0);
     }
     public void SceneOne()
     {
+        pressSound.Play();
         SceneManager.LoadScene(1);
     }
     public void SceneTwo()
     {
+        pressSound.Play();
         SceneManager.LoadScene(2);
     }
     public void SceneThree()
     {
+        pressSound.Play();
         SceneManager.LoadScene(3);
     }
 

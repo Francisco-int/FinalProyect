@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 481852573049822609}
   - component: {fileID: 5960308926877598364}
   - component: {fileID: 3163118511056582142}
+  - component: {fileID: 2135335825846862474}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -664,7 +665,10 @@ MonoBehaviour:
   cantEnemy: 0
   carGameOjbect: {fileID: 0}
   timeLeft: 60
-  changersUI: []
+  changersUI:
+  - {fileID: 3052081371860073222}
+  - {fileID: 4450494948431715927}
+  - {fileID: 8255829467650613758}
   paralizadoTime: 0
   powerUp: 0
   coolDownPowerUp: 0
@@ -721,6 +725,14 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &2135335825846862474
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449159309130162902}
+  m_Enabled: 1
 --- !u!1 &4450494948431715927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,10 +1131,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 7
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1744,7 +1756,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 48
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

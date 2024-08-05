@@ -80,6 +80,9 @@ public class PersonPlayer : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && powerUp && chargerLefts > 0)
 
         {
+            chargerLefts--;
+            changersUI[i].SetActive(false);
+            i++;
             coolDownPowerUp = 5;
             powerUpUI.maxValue = coolDownPowerUp;
             powerUp = false;

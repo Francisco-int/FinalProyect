@@ -18709,7 +18709,7 @@ Transform:
   m_GameObject: {fileID: 1878712272}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.4300001, y: 12.5, z: -7.92}
+  m_LocalPosition: {x: 1.4300001, y: 18.3, z: -7.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18729,7 +18729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1276197975}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 8, z: 0}
+  offset: {x: 0, y: 12, z: 0}
 --- !u!1 &1886546741
 GameObject:
   m_ObjectHideFlags: 0
@@ -21307,6 +21307,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7870533889617217469, guid: dbbe252e2ae9a974e95e0368a38c6b21, type: 3}
+      propertyPath: Priority
+      value: 183
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870533889617217469, guid: dbbe252e2ae9a974e95e0368a38c6b21, type: 3}
+      propertyPath: m_Volume
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870533889617217469, guid: dbbe252e2ae9a974e95e0368a38c6b21, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21506,6 +21518,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 962629042}
     m_Modifications:
+    - target: {fileID: 2457168368664390807, guid: 1a361106384db3249a57d3f0873e01c8, type: 3}
+      propertyPath: Priority
+      value: 84
+      objectReference: {fileID: 0}
     - target: {fileID: 3539441392001824005, guid: 1a361106384db3249a57d3f0873e01c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.35
